@@ -1481,7 +1481,7 @@ public class CustomRouteFragment extends Fragment {
 
                     if (start_time_array[0] == null)
                         return;
-                    
+
                     tripDay = 0;
                     setBtnColor();
 

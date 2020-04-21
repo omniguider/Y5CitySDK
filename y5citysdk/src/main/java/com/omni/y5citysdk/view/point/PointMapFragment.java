@@ -433,47 +433,6 @@ public class PointMapFragment extends Fragment implements OnMapReadyCallback, Go
             }
         });
 
-        if (mLastLocation != null) {
-            Y5CityAPI.getInstance().getPoints(getActivity(), "all", a_id, keyword,
-                    lat, lng, "300",
-//                    String.valueOf(mLastLocation.getLatitude()), String.valueOf(mLastLocation.getLongitude()), "10",
-                    UserInfoManager.Companion.getInstance().getUserLoginToken(getActivity()), new NetworkManager.NetworkManagerListener<PointData>() {
-                        @Override
-                        public void onSucceed(PointData pointData) {
-                            mPointData = pointData;
-                            switch (current_tab) {
-                                case 0:
-                                    poiData = pointData.getReligion();
-                                    addPOIMarkers(poiData, "religion");
-                                    break;
-                                case 1:
-                                    poiData = pointData.getFood();
-                                    addPOIMarkers(poiData, "food");
-                                    break;
-                                case 2:
-                                    poiData = pointData.getView();
-                                    addPOIMarkers(poiData, "view");
-                                    break;
-                                case 3:
-                                    poiData = pointData.getShopping();
-                                    addPOIMarkers(poiData, "shopping");
-                                    break;
-                                case 4:
-                                    poiData = pointData.getHotel();
-                                    addPOIMarkers(poiData, "hotel");
-                                    break;
-                            }
-
-                            mInfoListAdapter = new InfoListAdapter(getActivity(), poiData);
-                            mPOIInfoListView.setAdapter(mInfoListAdapter);
-                            recyclerView.setAdapter(new TrafficAdapter(getActivity(), pointData.getTraffic()));
-                        }
-
-                        @Override
-                        public void onFail(String errorMsg, boolean shouldRetry) {
-                        }
-                    });
-        }
 
         spinnerArea = mView.findViewById(R.id.fragment_point_map_area_sp);
         Y5CityAPI.getInstance().getArea(getActivity(), "", new NetworkManager.NetworkManagerListener<AreaData[]>() {
@@ -484,6 +443,49 @@ public class PointMapFragment extends Fragment implements OnMapReadyCallback, Go
                 areaListAll[0] = getResources().getString(R.string.fragment_guide_spinner_tip_text);
                 for (int i = 1; i < areaData.length + 1; i++) {
                     areaListAll[i] = areaData[i - 1].getTitle();
+                }
+
+                a_id = areaDataAll[1].getA_id();
+                if (mLastLocation != null) {
+                    Y5CityAPI.getInstance().getPoints(getActivity(), "all", a_id, keyword,
+                            lat, lng, "300",
+//                    String.valueOf(mLastLocation.getLatitude()), String.valueOf(mLastLocation.getLongitude()), "10",
+                            UserInfoManager.Companion.getInstance().getUserLoginToken(getActivity()), new NetworkManager.NetworkManagerListener<PointData>() {
+                                @Override
+                                public void onSucceed(PointData pointData) {
+                                    mPointData = pointData;
+                                    switch (current_tab) {
+                                        case 0:
+                                            poiData = pointData.getReligion();
+                                            addPOIMarkers(poiData, "religion");
+                                            break;
+                                        case 1:
+                                            poiData = pointData.getFood();
+                                            addPOIMarkers(poiData, "food");
+                                            break;
+                                        case 2:
+                                            poiData = pointData.getView();
+                                            addPOIMarkers(poiData, "view");
+                                            break;
+                                        case 3:
+                                            poiData = pointData.getShopping();
+                                            addPOIMarkers(poiData, "shopping");
+                                            break;
+                                        case 4:
+                                            poiData = pointData.getHotel();
+                                            addPOIMarkers(poiData, "hotel");
+                                            break;
+                                    }
+
+                                    mInfoListAdapter = new InfoListAdapter(getActivity(), poiData);
+                                    mPOIInfoListView.setAdapter(mInfoListAdapter);
+                                    recyclerView.setAdapter(new TrafficAdapter(getActivity(), pointData.getTraffic()));
+                                }
+
+                                @Override
+                                public void onFail(String errorMsg, boolean shouldRetry) {
+                                }
+                            });
                 }
             }
 
@@ -584,6 +586,8 @@ public class PointMapFragment extends Fragment implements OnMapReadyCallback, Go
 
             }
         });
+
+        spinnerArea.setSelection(1);
     }
 
     private void setFocusOnFragment() {
