@@ -34,6 +34,7 @@ import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
 import static android.content.Context.CLIPBOARD_SERVICE;
+import static com.omni.y5citysdk.Y5CitySDKActivity.loginToken;
 import static com.omni.y5citysdk.tool.Y5CityText.LOG_TAG;
 
 public class CustomMainFragment extends Fragment {
@@ -145,7 +146,7 @@ public class CustomMainFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-
+Log.e(LOG_TAG,"onCreateView");
         mView = inflater.inflate(R.layout.fragment_theme_custom, container, false);
 
         menu_bg = mView.findViewById(R.id.fragment_custom_main_menu_bg);
@@ -263,8 +264,7 @@ public class CustomMainFragment extends Fragment {
 //                });
             }
         });
-
-        Y5CityAPI.getInstance().getUserTrip(getActivity(), UserInfoManager.Companion.getInstance().getUserLoginToken(getActivity()),
+        Y5CityAPI.getInstance().getUserTrip(getActivity(), loginToken,
                 new NetworkManager.NetworkManagerListener<UserTripData[]>() {
                     @Override
                     public void onSucceed(final UserTripData[] userTripData) {
@@ -316,7 +316,7 @@ public class CustomMainFragment extends Fragment {
 
                     @Override
                     public void onFail(String errorMsg, boolean shouldRetry) {
-
+                        Log.e(LOG_TAG,"errorMsg"+errorMsg);
                     }
                 });
 

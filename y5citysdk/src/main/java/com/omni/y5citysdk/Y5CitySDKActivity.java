@@ -60,6 +60,8 @@ public class Y5CitySDKActivity extends BaseActivity {
     private OmniViewPager mViewPager;
     private TabLayout mTabLayout;
 
+    public static String loginToken;
+
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onEvent(OmniEvent event) {
         switch (event.getType()) {
@@ -89,9 +91,9 @@ public class Y5CitySDKActivity extends BaseActivity {
                         Y5CityAPI.getInstance().sdkLogin(Y5CitySDKActivity.this, parameter, new NetworkManager.NetworkManagerListener<CheckUserLoginData>() {
                             @Override
                             public void onSucceed(CheckUserLoginData checkUserLoginData) {
-                                Log.e(LOG_TAG, "onSucceed" + checkUserLoginData.getLoginToken());
                                 UserInfoManager.Companion.getInstance().saveUserData(
                                         Y5CitySDKActivity.this, checkUserLoginData);
+                                loginToken = checkUserLoginData.getLoginToken();
 
                                 mViewPager = findViewById(R.id.fragment_trip_ovp);
                                 mViewPager.setAdapter(new TripPagerAdapter(getSupportFragmentManager(), Y5CitySDKActivity.this));
@@ -213,6 +215,8 @@ public class Y5CitySDKActivity extends BaseActivity {
             PreferencesTools.getInstance().saveProperty(this, PreferencesTools.KEY_PREFERENCES_LOCATION_PERMISSION, "true");
         }
         registerService();
+
+        mViewPager.getAdapter().notifyDataSetChanged();
     }
 
     private void registerService() {
