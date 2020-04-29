@@ -34,13 +34,13 @@ public class Tools {
         return Build.VERSION.SDK_INT;
     }
 
-    public int getNotificationSmallIcon() {
-        if (getAndroidVersion() >= Build.VERSION_CODES.LOLLIPOP) {
-            return R.mipmap.image_1;
-        } else {
-            return R.mipmap.image_1;
-        }
-    }
+//    public int getNotificationSmallIcon() {
+//        if (getAndroidVersion() >= Build.VERSION_CODES.LOLLIPOP) {
+//            return R.mipmap.image_1;
+//        } else {
+//            return R.mipmap.image_1;
+//        }
+//    }
 
     public String getDeviceId(Context context) {
         return Settings.Secure.getString(context.getContentResolver(), Settings.Secure.ANDROID_ID);

@@ -13,6 +13,8 @@ public class ProjectData implements Serializable {
     private String id;
     @SerializedName("code")
     private String code;
+    @SerializedName("icon")
+    private String icon;
 
     public String getTitle() {
         return title;
@@ -24,6 +26,10 @@ public class ProjectData implements Serializable {
 
     public String getCode() {
         return code;
+    }
+
+    public String getIcon() {
+        return icon;
     }
 
 }

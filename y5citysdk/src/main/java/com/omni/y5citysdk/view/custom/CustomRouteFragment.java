@@ -9,9 +9,11 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.core.widget.NestedScrollView;
+
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -58,6 +60,7 @@ import java.util.Calendar;
 import java.util.List;
 
 import static android.app.Activity.RESULT_OK;
+import static com.omni.y5citysdk.Y5CitySDKActivity.icon;
 import static com.omni.y5citysdk.tool.Y5CityText.LOG_TAG;
 
 public class CustomRouteFragment extends Fragment {
@@ -91,6 +94,7 @@ public class CustomRouteFragment extends Fragment {
     private TripInfoData[] tripInfoData;
     private UserTripCopyData[] userTripCopyData;
     private TripInfoFeedback[] tripInfoFeedback;
+    private NetworkImageView bannerIcon;
     private ImageView bannerEdit;
     private ImageView titleEdit;
     private ImageView dateEdit;
@@ -641,6 +645,10 @@ public class CustomRouteFragment extends Fragment {
                     addCover_ll.setVisibility(View.GONE);
                 }
             });
+
+            bannerIcon = mView.findViewById(R.id.fragment_custom_route_banner_icon);
+            NetworkManager.getInstance().setNetworkImage(getContext(),
+                    bannerIcon, icon);
 
             bannerEdit = mView.findViewById(R.id.fragment_custom_route_banner_edit_iv);
             bannerEdit.setOnClickListener(new View.OnClickListener() {

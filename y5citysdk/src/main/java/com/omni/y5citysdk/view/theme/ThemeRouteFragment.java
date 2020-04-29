@@ -2,8 +2,10 @@ package com.omni.y5citysdk.view.theme;
 
 import android.app.TimePickerDialog;
 import android.os.Bundle;
+
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,6 +26,7 @@ import com.omni.y5citysdk.view.navi.InfoMapFragment;
 
 import java.util.Calendar;
 
+import static com.omni.y5citysdk.Y5CitySDKActivity.icon;
 import static com.omni.y5citysdk.tool.Y5CityText.LOG_TAG;
 
 
@@ -54,6 +57,7 @@ public class ThemeRouteFragment extends Fragment {
     private int minute_d = 0;
     private int st_hour = 0;
     private TripInfoData[] tripInfoData;
+    private NetworkImageView bannerIcon;
 
     public static ThemeRouteFragment newInstance(String tripId_o, String tripId_t, String title, String banner, String st_one, String st_two) {
         ThemeRouteFragment fragment = new ThemeRouteFragment();
@@ -97,6 +101,10 @@ public class ThemeRouteFragment extends Fragment {
                     getActivity().getSupportFragmentManager().popBackStack();
                 }
             });
+
+            bannerIcon = mView.findViewById(R.id.fragment_theme_route_banner_icon);
+            NetworkManager.getInstance().setNetworkImage(getContext(),
+                    bannerIcon, icon);
 
             mView.findViewById(R.id.fragment_theme_route_copy_tv).setOnClickListener(new View.OnClickListener() {
                 @Override

@@ -58,6 +58,7 @@ public class Y5CitySDKActivity extends BaseActivity {
     private TabLayout mTabLayout;
 
     public static String loginToken;
+    public static String icon;
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onEvent(OmniEvent event) {
@@ -83,6 +84,7 @@ public class Y5CitySDKActivity extends BaseActivity {
                     if (data.getId().equals(project_id)) {
                         DOMAIN_NAME = "https://www.omniguider.com/" + data.getCode() + "/";
                         Log.e(LOG_TAG, "DOMAIN_NAME" + DOMAIN_NAME);
+                        icon = data.getIcon();
 
                         String parameter = "[{\"id\":\"" + user_id + "\",\"name\":\"" + user_name + "\"}]";
                         Y5CityAPI.getInstance().sdkLogin(Y5CitySDKActivity.this, parameter, new NetworkManager.NetworkManagerListener<CheckUserLoginData>() {

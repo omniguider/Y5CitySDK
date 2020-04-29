@@ -173,7 +173,8 @@ public class NetworkManager {
         ImageLoader imageLoader = new ImageLoader(getRequestQueue(context), lruImageCache);
 
         networkImageView.setDefaultImageResId(defaultIconResId);
-        networkImageView.setErrorImageResId(errorIconResId == -1 ? R.mipmap.image_1 : errorIconResId);
+//        networkImageView.setErrorImageResId(errorIconResId == -1 ? R.mipmap.image_1 : errorIconResId);
+        networkImageView.setErrorImageResId(errorIconResId == -1 ? errorIconResId : errorIconResId);
         networkImageView.setImageUrl(url, imageLoader);
     }
 

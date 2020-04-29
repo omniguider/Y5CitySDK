@@ -119,11 +119,11 @@
                 android:layout_marginBottom="8dp"
                 android:orientation="horizontal">
 
-                <ImageView
+                <com.android.volley.toolbox.NetworkImageView
+                    android:id="@+id/fragment_theme_route_banner_icon"
                     android:layout_width="60dp"
                     android:layout_height="match_parent"
-                    android:layout_gravity="center"
-                    android:src="@mipmap/image_1" />
+                    android:layout_gravity="center" />
 
                 <LinearLayout
                     android:layout_width="wrap_content"
