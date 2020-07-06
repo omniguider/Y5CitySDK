@@ -5,14 +5,18 @@ import android.content.res.TypedArray;
 import android.location.Location;
 import android.os.Bundle;
 import android.os.Handler;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
+
 import androidx.fragment.app.Fragment;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -689,11 +693,21 @@ public class PointMapFragment extends Fragment implements OnMapReadyCallback, Go
         mMap.getUiSettings().setCompassEnabled(true);
 
         setupClusterManager();
-        if (mLastLocation != null) {
-            mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(
-                    new LatLng(Double.parseDouble(lat), Double.parseDouble(lng)),
+//        if (mLastLocation != null) {
+        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(
+                new LatLng(Double.parseDouble(lat), Double.parseDouble(lng)),
 //                    new LatLng(mLastLocation.getLatitude(), mLastLocation.getLongitude()),
-                    Y5CityText.MAP_ZOOM_LEVEL));
+                Y5CityText.MAP_ZOOM_LEVEL));
+//        }
+
+        if (mLastLocation == null) {
+            Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    updatePointMapList();
+                }
+            }, 5000);
         }
     }
 
@@ -1011,7 +1025,9 @@ public class PointMapFragment extends Fragment implements OnMapReadyCallback, Go
     }
 
     private void updatePointMapList() {
+        Log.e(LOG_TAG, "updatePointMapList");
         if (mLastLocation != null) {
+            Log.e(LOG_TAG, "111");
             Y5CityAPI.getInstance().getPoints(getActivity(), "all", a_id, keyword,
                     lat, lng, "300",
 //                    String.valueOf(mLastLocation.getLatitude()), String.valueOf(mLastLocation.getLongitude()), "10",

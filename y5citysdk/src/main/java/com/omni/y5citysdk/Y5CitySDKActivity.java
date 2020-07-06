@@ -96,7 +96,7 @@ public class Y5CitySDKActivity extends BaseActivity {
 
                                 mViewPager = findViewById(R.id.fragment_trip_ovp);
                                 mViewPager.setAdapter(new TripPagerAdapter(getSupportFragmentManager(), Y5CitySDKActivity.this));
-                                mViewPager.setCurrentItem(0);
+                                mViewPager.setCurrentItem(2);
                                 mViewPager.setOffscreenPageLimit(3);
 
                                 mTabLayout = findViewById(R.id.fragment_trip_tl);
