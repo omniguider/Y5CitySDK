@@ -9,10 +9,14 @@ import android.content.pm.PackageManager;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.provider.Settings;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+
 import com.google.android.material.tabs.TabLayout;
+
 import androidx.core.app.ActivityCompat;
+
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
@@ -43,10 +47,12 @@ public class Y5CitySDKActivity extends BaseActivity {
     private static final String ARG_KEY_USER_ID = "arg_key_user_id";
     private static final String ARG_KEY_USER_NAME = "arg_key_user_name";
     private static final String ARG_KEY_PROJECT_ID = "arg_key_project_id";
+    private static final String ARG_KEY_PROJECT_TAG = "arg_key_project_tag";
 
     private String user_id;
     private String user_name;
     private String project_id;
+    private String project_tag;
 
     public static String locale;
 
@@ -74,6 +80,7 @@ public class Y5CitySDKActivity extends BaseActivity {
         user_id = getIntent().getStringExtra(ARG_KEY_USER_ID);
         user_name = getIntent().getStringExtra(ARG_KEY_USER_NAME);
         project_id = getIntent().getStringExtra(ARG_KEY_PROJECT_ID);
+        project_tag = getIntent().getStringExtra(ARG_KEY_PROJECT_TAG);
 
         actionBarTitle = findViewById(R.id.fragment_trip_tv_action_bar_title);
 
@@ -96,7 +103,11 @@ public class Y5CitySDKActivity extends BaseActivity {
 
                                 mViewPager = findViewById(R.id.fragment_trip_ovp);
                                 mViewPager.setAdapter(new TripPagerAdapter(getSupportFragmentManager(), Y5CitySDKActivity.this));
-                                mViewPager.setCurrentItem(2);
+                                int tag = Integer.parseInt(project_tag) - 1;
+                                if (tag < 0 || tag > 2)
+                                    mViewPager.setCurrentItem(2);
+                                else
+                                    mViewPager.setCurrentItem(tag);
                                 mViewPager.setOffscreenPageLimit(3);
 
                                 mTabLayout = findViewById(R.id.fragment_trip_tl);

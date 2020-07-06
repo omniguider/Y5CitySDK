@@ -37,6 +37,15 @@
             android:textColor="@android:color/black"
             android:textColorHint="@color/gray_a4" />
 
+        <EditText
+            android:id="@+id/activity_main_project_tag_et"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="輸入專案標籤"
+            android:padding="16dp"
+            android:textColor="@android:color/black"
+            android:textColorHint="@color/gray_a4" />
+
         <TextView
             android:id="@+id/activity_main_to_sdk_tv"
             android:layout_width="350dp"
