@@ -736,8 +736,10 @@ public class CustomRouteFragment extends Fragment {
                     deleteTwo.setVisibility(tripTotalDay > 1 ? View.VISIBLE : View.GONE);
                     deleteThree.setVisibility(tripTotalDay > 2 ? View.VISIBLE : View.GONE);
                     startTime_ll.setEnabled(false);
-                    startTime_tv.setTextColor(getResources().getColor(R.color.gray_6a));
-                    startTimeAP_tv.setTextColor(getResources().getColor(R.color.gray_6a));
+                    if (isAdded()) {
+                        startTime_tv.setTextColor(getResources().getColor(R.color.gray_6a));
+                        startTimeAP_tv.setTextColor(getResources().getColor(R.color.gray_6a));
+                    }
                     contentNSV.setScrollbarFadingEnabled(false);
                     contentLL.removeAllViews();
 
@@ -828,8 +830,10 @@ public class CustomRouteFragment extends Fragment {
                     deleteTwo.setVisibility(View.GONE);
                     deleteThree.setVisibility(View.GONE);
                     startTime_ll.setEnabled(true);
-                    startTime_tv.setTextColor(getResources().getColor(R.color.time_blue));
-                    startTimeAP_tv.setTextColor(getResources().getColor(R.color.time_blue));
+                    if (isAdded()) {
+                        startTime_tv.setTextColor(getResources().getColor(R.color.time_blue));
+                        startTimeAP_tv.setTextColor(getResources().getColor(R.color.time_blue));
+                    }
                     contentNSV.setScrollbarFadingEnabled(true);
 
                     StringBuilder builder = new StringBuilder();
@@ -1687,12 +1691,14 @@ public class CustomRouteFragment extends Fragment {
     }
 
     private void setBtnColor() {
-        day_one_btn.setTextColor(tripDay == 0 ? getResources().getColor(android.R.color.white) : (getResources().getColor(R.color.sdkColorPrimary)));
-        day_one_btn.setBackgroundResource(tripDay == 0 ? R.drawable.solid_round_rectangle_gradient_purple : R.drawable.solid_round_rectangle_gradient_purple_stroke);
-        day_two_btn.setTextColor(tripDay == 1 ? getResources().getColor(android.R.color.white) : (getResources().getColor(R.color.sdkColorPrimary)));
-        day_two_btn.setBackgroundResource(tripDay == 1 ? R.drawable.solid_round_rectangle_gradient_purple : R.drawable.solid_round_rectangle_gradient_purple_stroke);
-        day_three_btn.setTextColor(tripDay == 2 ? getResources().getColor(android.R.color.white) : (getResources().getColor(R.color.sdkColorPrimary)));
-        day_three_btn.setBackgroundResource(tripDay == 2 ? R.drawable.solid_round_rectangle_gradient_purple : R.drawable.solid_round_rectangle_gradient_purple_stroke);
+        if (isAdded()) {
+            day_one_btn.setTextColor(tripDay == 0 ? getResources().getColor(android.R.color.white) : (getResources().getColor(R.color.sdkColorPrimary)));
+            day_one_btn.setBackgroundResource(tripDay == 0 ? R.drawable.solid_round_rectangle_gradient_purple : R.drawable.solid_round_rectangle_gradient_purple_stroke);
+            day_two_btn.setTextColor(tripDay == 1 ? getResources().getColor(android.R.color.white) : (getResources().getColor(R.color.sdkColorPrimary)));
+            day_two_btn.setBackgroundResource(tripDay == 1 ? R.drawable.solid_round_rectangle_gradient_purple : R.drawable.solid_round_rectangle_gradient_purple_stroke);
+            day_three_btn.setTextColor(tripDay == 2 ? getResources().getColor(android.R.color.white) : (getResources().getColor(R.color.sdkColorPrimary)));
+            day_three_btn.setBackgroundResource(tripDay == 2 ? R.drawable.solid_round_rectangle_gradient_purple : R.drawable.solid_round_rectangle_gradient_purple_stroke);
+        }
     }
 
     private void openFragmentPage(Fragment fragment, String tag) {

@@ -291,34 +291,36 @@ public class PointMapFragment extends Fragment implements OnMapReadyCallback, Go
         currentPositionIV = mView.findViewById(R.id.fragment_point_map_fab_current_position);
         spinner_fl = mView.findViewById(R.id.fragment_point_map_spinner_fl);
 
-        switch (current_tab) {
-            case 0:
-                religion_tv.setBackgroundColor(getResources().getColor(R.color.sdkColorPrimary));
-                religion_tv.setTextColor(getResources().getColor(android.R.color.white));
-                break;
-            case 1:
-                food_tv.setBackgroundColor(getResources().getColor(R.color.sdkColorPrimary));
-                food_tv.setTextColor(getResources().getColor(android.R.color.white));
-                break;
-            case 2:
-                view_tv.setBackgroundColor(getResources().getColor(R.color.sdkColorPrimary));
-                view_tv.setTextColor(getResources().getColor(android.R.color.white));
-                break;
-            case 3:
-                shopping_tv.setBackgroundColor(getResources().getColor(R.color.sdkColorPrimary));
-                shopping_tv.setTextColor(getResources().getColor(android.R.color.white));
-                break;
-            case 4:
-                hotel_tv.setBackgroundColor(getResources().getColor(R.color.sdkColorPrimary));
-                hotel_tv.setTextColor(getResources().getColor(android.R.color.white));
-                break;
-            case 5:
-                traffic_tv.setBackgroundColor(getResources().getColor(R.color.sdkColorPrimary));
-                traffic_tv.setTextColor(getResources().getColor(android.R.color.white));
-                traffic_fl.setVisibility(View.VISIBLE);
-                currentPositionIV.setVisibility(View.GONE);
-                spinner_fl.setVisibility(View.GONE);
-                break;
+        if (isAdded()) {
+            switch (current_tab) {
+                case 0:
+                    religion_tv.setBackgroundColor(getResources().getColor(R.color.sdkColorPrimary));
+                    religion_tv.setTextColor(getResources().getColor(android.R.color.white));
+                    break;
+                case 1:
+                    food_tv.setBackgroundColor(getResources().getColor(R.color.sdkColorPrimary));
+                    food_tv.setTextColor(getResources().getColor(android.R.color.white));
+                    break;
+                case 2:
+                    view_tv.setBackgroundColor(getResources().getColor(R.color.sdkColorPrimary));
+                    view_tv.setTextColor(getResources().getColor(android.R.color.white));
+                    break;
+                case 3:
+                    shopping_tv.setBackgroundColor(getResources().getColor(R.color.sdkColorPrimary));
+                    shopping_tv.setTextColor(getResources().getColor(android.R.color.white));
+                    break;
+                case 4:
+                    hotel_tv.setBackgroundColor(getResources().getColor(R.color.sdkColorPrimary));
+                    hotel_tv.setTextColor(getResources().getColor(android.R.color.white));
+                    break;
+                case 5:
+                    traffic_tv.setBackgroundColor(getResources().getColor(R.color.sdkColorPrimary));
+                    traffic_tv.setTextColor(getResources().getColor(android.R.color.white));
+                    traffic_fl.setVisibility(View.VISIBLE);
+                    currentPositionIV.setVisibility(View.GONE);
+                    spinner_fl.setVisibility(View.GONE);
+                    break;
+            }
         }
 
         religion_tv.setOnClickListener(new View.OnClickListener() {
@@ -326,8 +328,10 @@ public class PointMapFragment extends Fragment implements OnMapReadyCallback, Go
             public void onClick(View view) {
                 current_tab = 0;
                 setTabColorDefault();
-                religion_tv.setBackgroundColor(getResources().getColor(R.color.sdkColorPrimary));
-                religion_tv.setTextColor(getResources().getColor(android.R.color.white));
+                if (isAdded()) {
+                    religion_tv.setBackgroundColor(getResources().getColor(R.color.sdkColorPrimary));
+                    religion_tv.setTextColor(getResources().getColor(android.R.color.white));
+                }
                 if (mPointData != null) {
                     poiData = mPointData.getReligion();
                     addPOIMarkers(poiData, "religion");
@@ -346,8 +350,10 @@ public class PointMapFragment extends Fragment implements OnMapReadyCallback, Go
             public void onClick(View view) {
                 current_tab = 1;
                 setTabColorDefault();
-                food_tv.setBackgroundColor(getResources().getColor(R.color.sdkColorPrimary));
-                food_tv.setTextColor(getResources().getColor(android.R.color.white));
+                if (isAdded()) {
+                    food_tv.setBackgroundColor(getResources().getColor(R.color.sdkColorPrimary));
+                    food_tv.setTextColor(getResources().getColor(android.R.color.white));
+                }
                 if (mPointData != null) {
                     poiData = mPointData.getFood();
                     addPOIMarkers(poiData, "food");
@@ -366,8 +372,10 @@ public class PointMapFragment extends Fragment implements OnMapReadyCallback, Go
             public void onClick(View view) {
                 current_tab = 2;
                 setTabColorDefault();
-                view_tv.setBackgroundColor(getResources().getColor(R.color.sdkColorPrimary));
-                view_tv.setTextColor(getResources().getColor(android.R.color.white));
+                if (isAdded()) {
+                    view_tv.setBackgroundColor(getResources().getColor(R.color.sdkColorPrimary));
+                    view_tv.setTextColor(getResources().getColor(android.R.color.white));
+                }
                 if (mPointData != null) {
                     poiData = mPointData.getView();
                     addPOIMarkers(poiData, "view");
@@ -386,8 +394,10 @@ public class PointMapFragment extends Fragment implements OnMapReadyCallback, Go
             public void onClick(View view) {
                 current_tab = 3;
                 setTabColorDefault();
-                shopping_tv.setBackgroundColor(getResources().getColor(R.color.sdkColorPrimary));
-                shopping_tv.setTextColor(getResources().getColor(android.R.color.white));
+                if (isAdded()) {
+                    shopping_tv.setBackgroundColor(getResources().getColor(R.color.sdkColorPrimary));
+                    shopping_tv.setTextColor(getResources().getColor(android.R.color.white));
+                }
                 if (mPointData != null) {
                     poiData = mPointData.getShopping();
                     addPOIMarkers(poiData, "shopping");
@@ -406,8 +416,10 @@ public class PointMapFragment extends Fragment implements OnMapReadyCallback, Go
             public void onClick(View view) {
                 current_tab = 4;
                 setTabColorDefault();
-                hotel_tv.setBackgroundColor(getResources().getColor(R.color.sdkColorPrimary));
-                hotel_tv.setTextColor(getResources().getColor(android.R.color.white));
+                if (isAdded()) {
+                    hotel_tv.setBackgroundColor(getResources().getColor(R.color.sdkColorPrimary));
+                    hotel_tv.setTextColor(getResources().getColor(android.R.color.white));
+                }
                 if (mPointData != null) {
                     poiData = mPointData.getHotel();
                     addPOIMarkers(poiData, "hotel");
@@ -426,8 +438,10 @@ public class PointMapFragment extends Fragment implements OnMapReadyCallback, Go
             public void onClick(View view) {
                 current_tab = 5;
                 setTabColorDefault();
-                traffic_tv.setBackgroundColor(getResources().getColor(R.color.sdkColorPrimary));
-                traffic_tv.setTextColor(getResources().getColor(android.R.color.white));
+                if (isAdded()) {
+                    traffic_tv.setBackgroundColor(getResources().getColor(R.color.sdkColorPrimary));
+                    traffic_tv.setTextColor(getResources().getColor(android.R.color.white));
+                }
                 if (mPointData != null) {
                     traffic_fl.setVisibility(View.VISIBLE);
                     mBottomSheetBehavior.setPeekHeight(0);
@@ -444,7 +458,7 @@ public class PointMapFragment extends Fragment implements OnMapReadyCallback, Go
             public void onSucceed(final AreaData[] areaData) {
                 areaDataAll = areaData;
                 areaListAll = new String[areaData.length + 1];
-                areaListAll[0] = getResources().getString(R.string.fragment_guide_spinner_tip_text);
+                areaListAll[0] = "全部";
                 for (int i = 1; i < areaData.length + 1; i++) {
                     areaListAll[i] = areaData[i - 1].getTitle();
                 }
@@ -504,7 +518,7 @@ public class PointMapFragment extends Fragment implements OnMapReadyCallback, Go
             public void onSucceed(final AreaData[] areaData) {
                 areaDataRegion = areaData;
                 areaList = new String[areaData.length + 1];
-                areaList[0] = getResources().getString(R.string.fragment_guide_spinner_tip_text);
+                areaList[0] = "全部";
                 for (int i = 1; i < areaData.length + 1; i++) {
                     areaList[i] = areaData[i - 1].getTitle();
                 }
@@ -1096,18 +1110,20 @@ public class PointMapFragment extends Fragment implements OnMapReadyCallback, Go
     }
 
     private void setTabColorDefault() {
-        religion_tv.setBackgroundColor(getResources().getColor(R.color.gray_f3));
-        religion_tv.setTextColor(getResources().getColor(R.color.gray_a7));
-        food_tv.setBackgroundColor(getResources().getColor(R.color.gray_f3));
-        food_tv.setTextColor(getResources().getColor(R.color.gray_a7));
-        view_tv.setBackgroundColor(getResources().getColor(R.color.gray_f3));
-        view_tv.setTextColor(getResources().getColor(R.color.gray_a7));
-        shopping_tv.setBackgroundColor(getResources().getColor(R.color.gray_f3));
-        shopping_tv.setTextColor(getResources().getColor(R.color.gray_a7));
-        hotel_tv.setBackgroundColor(getResources().getColor(R.color.gray_f3));
-        hotel_tv.setTextColor(getResources().getColor(R.color.gray_a7));
-        traffic_tv.setBackgroundColor(getResources().getColor(R.color.gray_f3));
-        traffic_tv.setTextColor(getResources().getColor(R.color.gray_a7));
+        if (isAdded()) {
+            religion_tv.setBackgroundColor(getResources().getColor(R.color.gray_f3));
+            religion_tv.setTextColor(getResources().getColor(R.color.gray_a7));
+            food_tv.setBackgroundColor(getResources().getColor(R.color.gray_f3));
+            food_tv.setTextColor(getResources().getColor(R.color.gray_a7));
+            view_tv.setBackgroundColor(getResources().getColor(R.color.gray_f3));
+            view_tv.setTextColor(getResources().getColor(R.color.gray_a7));
+            shopping_tv.setBackgroundColor(getResources().getColor(R.color.gray_f3));
+            shopping_tv.setTextColor(getResources().getColor(R.color.gray_a7));
+            hotel_tv.setBackgroundColor(getResources().getColor(R.color.gray_f3));
+            hotel_tv.setTextColor(getResources().getColor(R.color.gray_a7));
+            traffic_tv.setBackgroundColor(getResources().getColor(R.color.gray_f3));
+            traffic_tv.setTextColor(getResources().getColor(R.color.gray_a7));
+        }
     }
 
     private void openFragmentPage(Fragment fragment, String tag) {
