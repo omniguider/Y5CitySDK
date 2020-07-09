@@ -226,7 +226,8 @@ public class Y5CitySDKActivity extends BaseActivity {
         }
         registerService();
 
-        mViewPager.getAdapter().notifyDataSetChanged();
+        if (mViewPager != null)
+            mViewPager.getAdapter().notifyDataSetChanged();
     }
 
     private void registerService() {
