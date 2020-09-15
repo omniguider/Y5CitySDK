@@ -16,6 +16,8 @@ public class PointInfoFeedback implements Serializable {
     private String name;
     @SerializedName("name_en")
     private String name_en;
+    @SerializedName("desc")
+    private String desc;
     @SerializedName("lat")
     private double lat;
     @SerializedName("lng")
@@ -57,6 +59,10 @@ public class PointInfoFeedback implements Serializable {
 
     public String getName_en() {
         return name_en;
+    }
+
+    public String getDesc() {
+        return desc;
     }
 
     public String getArea() {

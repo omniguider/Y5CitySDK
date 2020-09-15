@@ -13,9 +13,11 @@ import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.Settings;
+
 import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
+
 import android.text.SpannableString;
 import android.text.style.UnderlineSpan;
 import android.util.Log;
@@ -1002,6 +1004,9 @@ public class ReligionInfoFragment extends Fragment {
                     mView.findViewById(R.id.fragment_religion_info_func_ll).setVisibility(View.GONE);
                     info_ll = mView.findViewById(R.id.fragment_religion_info_info_ll);
                     info_ll.setVisibility(View.VISIBLE);
+
+                    ((TextView) mView.findViewById(R.id.fragment_religion_info_description))
+                            .setText(pointInfoFeedback.getDesc());
                 }
 
                 @Override
