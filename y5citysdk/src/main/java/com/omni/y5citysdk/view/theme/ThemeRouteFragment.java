@@ -457,6 +457,10 @@ public class ThemeRouteFragment extends Fragment {
             final TextView route_one_btn = mView.findViewById(R.id.fragment_theme_route_one);
             final TextView route_two_btn = mView.findViewById(R.id.fragment_theme_route_two);
 
+            if (tripId_t.equals(tripId_o)){
+                route_two_btn.setVisibility(View.GONE);
+            }
+
             route_one_btn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
